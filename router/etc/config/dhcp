@@ -1,0 +1,82 @@
+
+config dnsmasq
+	option domainneeded '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '1'
+	option local '/lan/'
+	option domain 'lan'
+	option expandhosts '1'
+	option authoritative '1'
+	option readethers '1'
+	option leasefile '/tmp/dhcp.leases'
+	option resolvfile '/tmp/resolv.conf.d/resolv.conf.auto'
+	option localservice '1'
+	option ednspacket_max '1232'
+	list address '/falkaer.io/192.168.1.61'
+
+config dhcp 'lan'
+	option interface 'lan'
+	option start '100'
+	option limit '150'
+	option leasetime '12h'
+	option dhcpv4 'server'
+	option dhcpv6 'server'
+	option ra 'server'
+	option ra_slaac '1'
+	list ra_flags 'managed-config'
+	list ra_flags 'other-config'
+
+config dhcp 'wan'
+	option interface 'wan'
+	option ignore '1'
+
+config odhcpd 'odhcpd'
+	option maindhcp '0'
+	option leasefile '/tmp/hosts/odhcpd'
+	option leasetrigger '/usr/sbin/odhcpd-update'
+	option loglevel '4'
+
+config host
+	option name 'beacon1'
+	option dns '1'
+	option mac '38:A0:67:D4:74:D1'
+	option ip '192.168.1.190'
+
+config host
+	option mac '4C:CC:6A:D2:39:94'
+	option ip '192.168.1.61'
+	option name 'falkaer-htpc'
+	option dns '1'
+	option duid '00048d1462d8002392800eaec2354ecc7f3e'
+
+config host
+	option dns '1'
+	option mac 'C4:AC:59:A0:89:AA'
+	option ip '192.168.1.194'
+	option name 'lbp621c'
+
+config host
+	option name 'sony-tv'
+	option dns '1'
+	option mac '70:26:05:52:6A:29'
+	option ip '192.168.1.174'
+
+config host
+	option name 'bme680pi'
+	option dns '1'
+	option mac 'DC:A6:32:26:31:5F'
+	option ip '192.168.1.218'
+
+config host
+	option name 'dantherm'
+	option dns '1'
+	option mac '00:25:6F:80:05:B9'
+	option ip '192.168.1.100'
+
+config host
+	option name 'ap'
+	option dns '1'
+	option mac 'E4:38:83:E4:75:04'
+	option ip '192.168.1.2'
+
